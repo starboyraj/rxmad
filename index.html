@@ -27,9 +27,23 @@
     </div>
     <div class="nav-cta">
       <a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:14px;">Get in Touch</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
   </nav>
 </header>
+
+<div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#products">Products</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Get in Touch</a>
+</nav>
 
 <!-- ================= HERO SLIDER ================= -->
 <section class="hero" id="home" style="padding:0;">
@@ -295,8 +309,7 @@
 </section>
 
 <!-- ================= WHATSAPP FLOATING BUTTON ================= -->
-<a href="https://wa.me/+919773849332
-" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+<a href="https://wa.me/+919773849332" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
   <svg width="30" height="30" viewBox="0 0 32 32" fill="#fff"><path d="M16.001 3C9.096 3 3.5 8.596 3.5 15.5c0 2.34.634 4.53 1.735 6.412L3 29l7.267-2.196A12.44 12.44 0 0 0 16 28.999c6.905 0 12.5-5.596 12.5-12.5S22.906 3 16.001 3zm0 22.7c-1.99 0-3.85-.55-5.44-1.5l-.39-.23-4.31 1.3 1.32-4.2-.25-.42a10.16 10.16 0 0 1-1.63-5.55c0-5.66 4.6-10.26 10.26-10.26a10.2 10.2 0 0 1 7.25 3.01 10.19 10.19 0 0 1 3 7.25c0 5.66-4.6 10.26-10.26 10.26zm5.62-7.68c-.31-.15-1.82-.9-2.1-1-.28-.1-.49-.15-.7.15-.2.31-.8 1-.98 1.2-.18.21-.36.23-.67.08-.31-.16-1.3-.48-2.48-1.53-.92-.82-1.53-1.83-1.72-2.14-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.55.15-.18.2-.31.31-.52.1-.2.05-.39-.02-.55-.08-.15-.7-1.68-.95-2.3-.25-.6-.51-.52-.7-.53h-.6c-.2 0-.55.08-.83.39-.28.31-1.09 1.07-1.09 2.6s1.12 3.02 1.28 3.23c.16.2 2.2 3.36 5.34 4.71.75.32 1.33.51 1.78.66.75.24 1.43.2 1.97.13.6-.09 1.82-.74 2.08-1.46.26-.71.26-1.32.18-1.46-.07-.13-.28-.21-.6-.36z"/></svg>
 </a>
 
@@ -330,6 +343,31 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+  (function(){
+    var burger = document.getElementById('burgerBtn');
+    var closeBtn = document.getElementById('mobileNavClose');
+    var backdrop = document.getElementById('mobileNavBackdrop');
+    var menu = document.getElementById('mobileNav');
+    var links = menu.querySelectorAll('a');
+
+    function openMenu(){
+      menu.classList.add('open');
+      backdrop.classList.add('open');
+      document.body.classList.add('nav-open');
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.classList.remove('nav-open');
+    }
+
+    burger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    links.forEach(function(link){ link.addEventListener('click', closeMenu); });
+  })();
+</script>
 
 </body>
 </html>
